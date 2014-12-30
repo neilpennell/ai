@@ -14,8 +14,8 @@
 </head>
 
 <template name="ApplicationLayout">
-    {{> navbar }}}
-    <div class="container">
+    {{> navbar }}
+    <div class="container" style="padding-top: 50px;">
         {{> yield }}
     </div>
     <!-- /.container -->
@@ -45,7 +45,7 @@
                         <li><p class="navbar-text navbar-right">Signed in as {{ logged_in_user }} - &nbsp;</p></li>
                         <li>{{> logout }}</li>
                     {{else}}
-                        <li>{{> loginButtons}}</li>
+                        <li><span class="navbar-text" >{{> loginButtons align="right" }}</span></li>
                     {{/if }}
                 </ul>
             </div>

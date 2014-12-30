@@ -2,7 +2,7 @@
  * Created by npennell on 12/28/14.
  */
 
-Template.ApplicationLayout.helpers({
+Template.navbar.helpers({
     logged_in: function() {
         return Meteor.user() != null;
     },
