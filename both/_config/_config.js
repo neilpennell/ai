@@ -1,7 +1,7 @@
 /**
  * Created by neilpennell on 1/3/15.
  */
-
+//var Config;
 //this.Config = {
 //    name: 'Action Item Editor',
 //    title: 'Making Action Items Easier',
@@ -36,4 +36,4 @@
 //    },
 //    publicRoutes: ['home']
 //};
-
+//

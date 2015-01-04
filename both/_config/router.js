@@ -1,6 +1,9 @@
 /**
  * Created by npennell on 12/28/14.
  */
+
+
+
 Router.configure({
     layoutTemplate: 'ApplicationLayout'
 });
