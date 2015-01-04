@@ -1,3 +1,23 @@
 <template name="home">
-    <h1>Welcome to home! AdminConfig</h1>
+    <h1>Welcome to home!</h1>
+    <p>Defined Users ({{ userCount }}):</p>
+    <ul>
+    {{#each users }}
+        <li>{{> home_userInfo }}</li>
+    {{/each}}
+    </ul>
+</template>
+
+<template name="home_userInfo">
+    <div>
+        {{ username }}
+        <div>
+            Roles:
+        <ul>
+            {{#each currentRoles }}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+        </div>
+    </div>
 </template>

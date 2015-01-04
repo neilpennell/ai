@@ -5,12 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Action Item Editor">
     <meta name="author" content="Neil Pennell">
-
-    <!--
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-        -->
 </head>
 
 <template name="ApplicationLayout">
@@ -18,7 +12,6 @@
     <div class="container" style="padding-top: 50px;">
         {{> yield }}
     </div>
-    <!-- /.container -->
 </template>
 
 <template name="navbar">
@@ -39,13 +32,16 @@
                     <li class="active"><a href="#">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    {{#if isInRole 'admin' }}
+                        <li><a href="/admin">Admin</a></li>
+                    {{/if}}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {{#if logged_in }}
                         <li><p class="navbar-text navbar-right">Signed in as {{ logged_in_user }} - &nbsp;</p></li>
                         <li>{{> logout }}</li>
                     {{else}}
-                        <li><span class="navbar-text" >{{> loginButtons align="right" }}</span></li>
+                        <li><span class="navbar-text">{{> loginButtons align="right" }}</span></li>
                     {{/if }}
                 </ul>
             </div>
@@ -61,17 +57,39 @@
 </template>
 
 <template name="login">
-    <form id="sign-in-form" role="form">
-        <h1 class="form-heading">
-            Log In
-        </h1>
-        <input type="email" class="form-control" placeholder="Email address"
-               name="user_email" id='user_email' required autofocus>
-        <input type="password" class="form-control" placeholder="Password"
-               name="user_password" id='user_password' required>
+    {{#if adminUserDefined }}
+        <form id="sign-in-form" role="form">
+            <h1 class="form-heading">
+                Log In
+            </h1>
+            <input type="email" class="form-control" placeholder="Email address"
+                   name="user_email" id='user_email' required autofocus>
+            <input type="password" class="form-control" placeholder="Password"
+                   name="user_password" id='user_password' required>
 
-        <div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit"> Log In</button>
-        </div>
-    </form>
+            <div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit"> Log In</button>
+            </div>
+        </form>
+    {{else }}
+        <p>Admin Not defined</p>
+        <form id="create-admin-form" role="form">
+            <h1 class="form-heading">
+                Create Admin User
+            </h1>
+            <input type="text" class="form-control" placeholder="User Name"
+                   name="user_name" id='user_name' required autofocus>
+            <input type="email" class="form-control" placeholder="Email address"
+                   name="user_email" id='user_email' required >
+            <input type="password" class="form-control" placeholder="Password"
+                   name="user_password" id='user_password' required>
+            <div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Create Administrator</button>
+            </div>
+        </form>
+
+    {{/if}}
+
 </template>
+
+
