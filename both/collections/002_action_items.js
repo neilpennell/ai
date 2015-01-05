@@ -34,8 +34,9 @@ Schemas.ActionItem = new SimpleSchema({
         },
         optional: true
     },
+    // this is a reference to Meteor.user._id
     current_owner_id: {
-        type: Schemas.User,
+        type: String,
         optional: true
     }
 });
