@@ -50,8 +50,8 @@
 
 <template name="layout_nav_items_right">
     {{#if logged_in }}
-        <li><p class="navbar-text navbar-right">{{ logged_in_user }}</p></li>
-    {{else}}
+        <!--<li><p class="navbar-text navbar-right">{{ logged_in_user }}</p></li>-->
+    {{!else}}
         <li><span class="navbar-text">{{> loginButtons align="right" }}</span></li>
     {{/if }}
 </template>

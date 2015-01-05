@@ -4,4 +4,5 @@
 Tracker.autorun(function() {
     Meteor.subscribe('user');
     Meteor.subscribe('users');
+    Meteor.subscribe('userData');
 });

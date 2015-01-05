@@ -3,7 +3,7 @@
  */
 
 
-Template.navbar.helpers({
+Template.layout_nav_items_right.helpers({
     logged_in: function () {
         return Meteor.user() != null;
     },
