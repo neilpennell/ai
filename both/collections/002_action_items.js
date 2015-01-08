@@ -7,23 +7,17 @@ Schemas.Person = new SimpleSchema({});
 ActionItems = new Mongo.Collection("action_items");
 
 Schemas.ActionItem = new SimpleSchema({
+    _id: {
+        type: String,
+        optional: true
+    },
     subject: {
         type: String,
         optional: false
     },
     created_on: {
         type: Date,
-        autoValue: function() {
-            if (this.isUpdate) {
-                return new Date();
-            }
-        },
-        denyInsert: true,
-        optional: true
-    },
-    updated_on: {
-        type: Date,
-        autoValue: function() {
+        autoValue: function () {
             if (this.isInsert) {
                 return new Date;
             } else if (this.isUpsert) {
@@ -31,6 +25,14 @@ Schemas.ActionItem = new SimpleSchema({
             } else {
                 this.unset();
             }
+        },
+        //denyInsert: true,
+        optional: true
+    },
+    updated_on: {
+        type: Date,
+        autoValue: function () {
+            return new Date;
         },
         optional: true
     },

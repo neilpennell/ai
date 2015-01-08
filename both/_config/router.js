@@ -5,7 +5,8 @@
 
 
 Router.configure({
-    layoutTemplate: 'ApplicationLayout'
+    layoutTemplate: 'ApplicationLayout',
+    loadingTemplate: 'loading'
 });
 
 Router.onBeforeAction(function () {
@@ -24,6 +25,14 @@ Router.onBeforeAction(function () {
 })
 ;
 
-Router.route('/', function () {
-    this.render('home');
+Router.route('/', {
+    name: 'home',
+    subscriptions: function() {
+        // returning a subscription handle or an array of subscription handles
+        // adds them to the wait list.
+        return [ Meteor.subscribe('user'),
+                    Meteor.subscribe('users'),
+                    Meteor.subscribe('userData'),
+                    Meteor.subscribe('all_action_items')]
+    }
 });

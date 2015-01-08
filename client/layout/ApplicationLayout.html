@@ -81,7 +81,6 @@
             </div>
         </form>
     {{else }}
-        <p>Admin Not defined</p>
         <form id="create-admin-form" role="form">
             <h1 class="form-heading">
                 Create Admin User
@@ -101,4 +100,6 @@
 
 </template>
 
-
+<template name="loading">
+    {{> spinner}}
+</template>

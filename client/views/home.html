@@ -1,23 +1,45 @@
 <template name="home">
     <h1>Welcome to home!</h1>
-    <p>Defined Users ({{ userCount }}):</p>
-    <ul>
-    {{#each users }}
-        <li>{{> home_userInfo }}</li>
-    {{/each}}
-    </ul>
-</template>
-
-<template name="home_userInfo">
-    <div>
-        {{ username }}
-        <div>
-            Roles:
-        <ul>
-            {{#each currentRoles }}
-            <li>{{this}}</li>
-            {{/each}}
-        </ul>
+    <hr/>
+    <div class="container">
+        <div class="row" id="champion-messages">
+            <div class="col-md-3">
+                <div class="btn-group-vertical" role="group" aria-label="...">
+                {{#each action_item_list }}
+                    {{>home_list_item }}
+                {{/each}}
+                </div>
+            </div>
+            <div class="col-md-9">
+                {{>home_list_item_detail selected_action_item}}
+            </div>
         </div>
     </div>
+</template>
+
+
+<template name="home_list_item">
+    <button id="list_item" class="btn-default btn btn-sm">{{subject}}</button>
+</template>
+
+<template name="home_list_item_detail">
+    <form id="ai_edit">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Subject</label>
+            <input class="form-control" id="subject"  value={{subject}}>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Create On</label>
+            <input type="input" class="form-control" id="create_on" readonly value={{created_on}}>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputFile">Updated At</label>
+            <input type="input" class="form-control" id="updated_on" readonly value={{updated_on}}>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputFile">Current Owner</label>
+            <input type="input" class="form-control" id="current_owner" readonly value={{current_owner_id}}>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
 </template>
