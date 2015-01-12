@@ -38,8 +38,17 @@ Schemas.ActionItem = new SimpleSchema({
     },
     // this is a reference to Meteor.user._id
     current_owner_id: {
-        type: String,
-        optional: true
+        type: [Schemas.User],
+        optional: true,
+        autoform: {
+            options: function () {
+                var list = [];
+                Meteor.users.find().forEach(function (user) {
+                    list.push({label: user.username, value: user._id})
+                });
+                return list;
+            }
+        }
     }
 });
 

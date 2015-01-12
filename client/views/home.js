@@ -11,16 +11,27 @@ Template.home.helpers({
     }
 });
 
+Template.home_list_item_detail.helpers({
+});
+
 Template.home_list_item.events({
-    "click #list_item": function () {
+    "click #list_item": function (event) {
+        event.preventDefault();
         Session.set("select_list_item", this._id);
     }
 });
 
 Template.home_list_item_detail.events({
     "submit #ai_edit": function(event) {
-        var new_subject = $('input[id="subject"]').val();
-        Meteor.call("updateActionItem", Session.get('select_list_item'), new_subject);
+		event.preventDefault();
+        var new_subject = $('input[name="subject"]').val();
+        var new_owner = $('select[name="current_owner_id"]').val();
+        console.log('new_owner = '+new_owner);
+        Meteor.call("updateActionItem",
+            Session.get('select_list_item'),
+            {subject: new_subject, current_owner_id: new_owner},
+            function (error, result) { console.log(error); console.log(result); });
+        //return false;
     }
 });
 

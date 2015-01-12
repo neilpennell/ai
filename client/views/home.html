@@ -1,5 +1,6 @@
 <template name="home">
     <h1>Welcome to home!</h1>
+    <p>From Server - {{baz_calls}}</p>
     <hr/>
     <div class="container">
         <div class="row" id="champion-messages">
@@ -23,6 +24,10 @@
 </template>
 
 <template name="home_list_item_detail">
+    {{> quickForm collection="ActionItems" doc=this id="ai_edit" type="update" omitFields="created_on, updated_on"}}
+</template>
+
+<template name="home_list_item_detail_old">
     <form id="ai_edit">
         <div class="form-group">
             <label for="exampleInputEmail1">Subject</label>
