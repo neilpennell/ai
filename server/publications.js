@@ -16,3 +16,7 @@ Meteor.publish('users', function() {
 Meteor.publish('all_action_items', function() {
     return ActionItems.find();
 });
+
+Meteor.publish('all_categories', function() {
+    return Categories.find();
+})

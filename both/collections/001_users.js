@@ -56,7 +56,8 @@ Schemas.UserProfile = new SimpleSchema({
 Schemas.User = new SimpleSchema({
     username: {
         type: String,
-        regEx: /^[a-z0-9A-Z_]{3,15}$/
+        regEx: /^[a-z0-9A-Z_]{3,15}$/,
+        optional: true
     },
     emails: {
         type: [Object],

@@ -38,7 +38,7 @@ Schemas.ActionItem = new SimpleSchema({
     },
     // this is a reference to Meteor.user._id
     current_owner_id: {
-        type: [Schemas.User],
+        type: String,
         optional: true,
         autoform: {
             options: function () {
@@ -48,6 +48,48 @@ Schemas.ActionItem = new SimpleSchema({
                 });
                 return list;
             }
+        }
+    },
+    comments: {
+        type: [Object],
+        optional: true
+    },
+    "comments.$.date": {
+        type: Date,
+        autoValue: function () {
+            return new Date;
+        },
+        optional: true
+    },
+    "comments.$.entry": {
+        type: String,
+        autoform: {
+            afFieldInput: {
+                type: "textarea",
+                rows: 5
+            }
+        }
+
+    },
+    "comments.$.user_id": {
+        type: String,
+        optional: true,
+        autoform: {
+            afFieldInput: {
+                value: function() {
+                    return Meteor.userId();
+                }
+            }
+        }
+    },
+    state: {
+        type: String,
+        optional: false, // need to changed to false
+        autoform: {
+            options: [
+                {label: "Open", value: 'open'},
+                {label: "Closed", value: 'close'}
+            ]
         }
     }
 });
